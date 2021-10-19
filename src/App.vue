@@ -1,16 +1,21 @@
 <template>
-  <HelloWorld msg="Welcome to CosmoList"/>
+  <div class="Overall">
+    <LeftSide />
+    <RightSide />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LeftSide from "./components/LeftSide.vue";
+import RightSide from "./components/RightSide.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    LeftSide,
+    RightSide,
+  },
+};
 </script>
 
 <style>
@@ -21,5 +26,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.Overall {
+  display: flex;
+  flex-direction: row;
 }
 </style>
