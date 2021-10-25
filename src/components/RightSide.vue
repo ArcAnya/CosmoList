@@ -1,12 +1,34 @@
 <template>
-  <div class="overall-list">
+  <div class="overall-container">
     <div class="header">
-      <div>Search</div>
+      <div class="search-wrapper">
+        <input type="text" v-model="search" placeholder="Search Blockchain:" />
+      </div>
       <div>Theme</div>
-      <button @click="getKeplr()">Connect Wallet #1</button>
     </div>
     <br />
     <div class="list">
+      <!-- TO DO => search for a Blockchain in JSON files => progressive search! -->
+      <!-- TO DO => logic to get data/props from the JSON files to show the info on components-->
+
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
       <AddChain />
       <AddChain />
       <AddChain />
@@ -26,56 +48,20 @@
 </template>
 
 <script>
-
-import AddChain from "./AddChain.vue"
+import AddChain from "./AddChain.vue";
 
 export default {
   name: "RightSide",
   components: {
-    AddChain
+    AddChain,
   },
-  props: {
-    // msg: String
-  },
-  data() {
-    return {};
-  },
-  methods: {
-    async getKeplr() {
-      if (window.keplr) {
-        return window.keplr;
-      } else {
-        alert(
-          "Install the Keplr Wallet browser extension: https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en"
-        );
-      }
-
-      if (document.readyState === "complete") {
-        return window.keplr;
-      }
-
-      return new Promise((resolve) => {
-        const documentStateChange = (event) => {
-          if (event.target && event.target.readyState === "complete") {
-            resolve(window.keplr);
-            document.removeEventListener(
-              "readystatechange",
-              documentStateChange
-            );
-          }
-        };
-
-        document.addEventListener("readystatechange", documentStateChange);
-      });
-    },
-  },
+  methods: {},
 };
 </script>
 
 <style scoped>
-.overall-list {
+.overall-container {
   display: flex;
-  background-color: lightgray;
   height: 90vh;
   width: 70vw;
   flex-direction: column;
@@ -85,12 +71,14 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 1%;
 }
 .list {
   display: flex;
   /* justify-content: space-around; */
   align-items: center;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 button {
   border-radius: 5%;

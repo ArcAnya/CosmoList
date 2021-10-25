@@ -1,21 +1,27 @@
 <template>
   <div class="chain">
+    <!-- TO DO ADD info based on chainData and checking it first -->
     <h2>Cosmos Hub</h2>
     <button @click="addChain()">Add to Keplr</button>
   </div>
 </template>
 
 <script>
-import chainData from "../../data/TestChain.json";
+import chainData from "../../data/MyChain-1.json";
 
 export default {
   name: "AddChain",
   methods: {
-    addChain() {
-  
-      window.keplr.experimentalSuggestChain( chainData
-        //check that has certain info (chainId) - necessary for button to work
-      );
+    async addChain() {
+      if (window.keplr) {
+        // TO DO: check that has certain info (chainId) - necessary for button to work
+        window.keplr.experimentalSuggestChain(chainData);
+        // return window.keplr;
+      } else {
+        alert(
+          "Install the Keplr Wallet browser extension: https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en"
+        );
+      }
     },
   },
 };
