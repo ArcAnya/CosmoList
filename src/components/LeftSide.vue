@@ -38,7 +38,7 @@ a {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
-  width: 50vw;
+  height: 90vh;
+  width: 30vw;
 }
 </style>

@@ -1,18 +1,39 @@
 <template>
   <div class="overall-list">
     <div class="header">
-      <div>SEARCH</div>
-      <div>THEME</div>
+      <div>Search</div>
+      <div>Theme</div>
       <button @click="getKeplr()">Connect Wallet #1</button>
     </div>
     <br />
-    <div class="list">List of Chains (Components) #2</div>
+    <div class="list">
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+      <AddChain />
+    </div>
   </div>
 </template>
 
 <script>
+
+import AddChain from "./AddChain.vue"
+
 export default {
   name: "RightSide",
+  components: {
+    AddChain
+  },
   props: {
     // msg: String
   },
@@ -24,7 +45,9 @@ export default {
       if (window.keplr) {
         return window.keplr;
       } else {
-          console.log("No Kelpr!")
+        alert(
+          "Install the Keplr Wallet browser extension: https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en"
+        );
       }
 
       if (document.readyState === "complete") {
@@ -53,17 +76,24 @@ export default {
 .overall-list {
   display: flex;
   background-color: lightgray;
-  height: 100vh;
-  width: 50vw;
+  height: 90vh;
+  width: 70vw;
   flex-direction: column;
   justify-content: space-around;
 }
 .header {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .list {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  align-items: center;
+  flex-wrap: wrap;
+}
+button {
+  border-radius: 5%;
+  padding: 1%;
 }
 </style>
