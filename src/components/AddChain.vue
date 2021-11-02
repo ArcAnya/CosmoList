@@ -12,9 +12,13 @@ import chainData from "../../data/MyChain-1.json";
 export default {
   name: "AddChain",
   methods: {
+    // NOTE: don't need to connect the wallet, only to add the chain to the wallet
+      // or do we? => doesn't react if wallet not "logged in" => should encourage you to log in, maybe prompt the log in
     async addChain() {
       if (window.keplr) {
+        // TO DO: so far need to disable Brave privacy feature for it to work :/
         // TO DO: check that has certain info (chainId) - necessary for button to work
+        window.keplr.enable("cosmohub-4");
         window.keplr.experimentalSuggestChain(chainData);
         // return window.keplr;
       } else {

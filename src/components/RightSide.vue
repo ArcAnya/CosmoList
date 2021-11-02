@@ -5,6 +5,10 @@
         <input type="text" v-model="search" placeholder="Search Blockchain:" />
       </div>
       <div>Theme</div>
+      <button @click="connect()">
+        <p v-if="!address">Connect Wallet</p>
+        <p v-else>Connected {{address}}</p>
+      </button>
     </div>
     <br />
     <div class="list">
@@ -52,10 +56,30 @@ import AddChain from "./AddChain.vue";
 
 export default {
   name: "RightSide",
+  data() {
+    return {
+      keplrInfo: null,
+      address: null,
+    };
+  },
   components: {
     AddChain,
   },
-  methods: {},
+  methods: {
+    async connect() {
+      if (window.keplr) {
+        window.keplr.enable("cosmoshub-4");
+        this.keplrInfo = await window.keplr.getKey("cosmoshub-4");
+        this.address = this.keplrInfo.bech32Address;
+        console.log(this.address);
+        // TO DO => with catch / error AND change button to "connected" div when connected (or "disconnect" button to lock again )
+      } else {
+        alert(
+          "Install the Keplr Wallet browser extension: https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en"
+        );
+      }
+    },
+  },
 };
 </script>
 
